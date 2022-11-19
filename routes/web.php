@@ -32,3 +32,7 @@ Route::get('/companies/{name?}', function ($name = null) {
         return "All companies";
     }
 })->whereAlpha('name');
+
+Route::fallback(function () {
+    return "<h1>404 | Page Not Found</h1>";
+});
