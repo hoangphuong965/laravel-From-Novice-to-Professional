@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,12 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("/", function () {
-    return view("welcome");
-});
+Route::get("/", WelcomeController::class);
 
-Route::controller(ContactController::class)->name('contact.')->group(function () {
-    Route::get('/contacts', 'index')->name('index');
-    Route::get('/contacts/create', 'create')->name('create');
-    Route::get("/contacts/{id}/{name}", 'show')->name('show');
-});
+
+Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
+Route::get('/contacts/create', [ContactController::class, 'create'])->name('contacts.create');
+Route::get("/contacts/{id}/{name}", [ContactController::class, 'show'])->name('contacts.show');
