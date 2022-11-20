@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TagController;
@@ -29,4 +30,12 @@ Route::resource('/companies', CompanyController::class);
 Route::resources([
     '/tags' => TagController::class,
     '/tasks' => TaskController::class
+]);
+
+Route::resource('/activities', ActivityController::class)->only([
+    'create', 'store', 'edit', 'update', 'destroy'
+]);
+
+Route::resource('/activities', ActivityController::class)->except([
+    'index', 'show'
 ]);
