@@ -32,10 +32,6 @@ Route::resources([
     '/tasks' => TaskController::class
 ]);
 
-Route::resource('/activities', ActivityController::class)->only([
-    'create', 'store', 'edit', 'update', 'destroy'
-]);
-
 Route::resource('/activities', ActivityController::class)->except([
     'index', 'show'
 ]);
